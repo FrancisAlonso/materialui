@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/FrancisAlonso/materialui/static/css/main.c3bc851c.css",
+    "main.js": "/FrancisAlonso/materialui/static/js/main.9c3e1929.js",
+    "static/media/fideos.jpg": "/FrancisAlonso/materialui/static/media/fideos.0682a61a65a28311894d.jpg",
+    "static/media/cover.jpg": "/FrancisAlonso/materialui/static/media/cover.7ac7c136096f9c75a3ee.jpg",
+    "static/media/lechuga.jpg": "/FrancisAlonso/materialui/static/media/lechuga.b288170c9d2a0837829c.jpg",
+    "static/media/logo.png": "/FrancisAlonso/materialui/static/media/logo.d0a4071a15feb61c5716.png",
+    "static/media/te.jpg": "/FrancisAlonso/materialui/static/media/te.9b86d4adfbf26da8e158.jpg",
+    "static/media/sandia.jpg": "/FrancisAlonso/materialui/static/media/sandia.6c6d0cd693317b7201f7.jpg",
+    "static/media/brócoli.jpg": "/FrancisAlonso/materialui/static/media/brócoli.c4f9d3a7bd30c61815fa.jpg",
+    "static/media/super8.jpg": "/FrancisAlonso/materialui/static/media/super8.539d031468bf72792840.jpg",
+    "static/media/arroz.jpg": "/FrancisAlonso/materialui/static/media/arroz.4a681cf4574f000df962.jpg",
+    "static/media/vegetales_mixtos.jpg": "/FrancisAlonso/materialui/static/media/vegetales_mixtos.3ef16cd21e27fc5f79f3.jpg",
+    "static/media/manzana.jpg": "/FrancisAlonso/materialui/static/media/manzana.5d7316392959d1896e7e.jpg",
+    "static/media/espinaca.jpg": "/FrancisAlonso/materialui/static/media/espinaca.001f597eb54e8d5f65f6.jpg",
+    "static/media/pollo.jpg": "/FrancisAlonso/materialui/static/media/pollo.5a754e2d3e5caa8c1122.jpg",
+    "static/media/azucar.jpg": "/FrancisAlonso/materialui/static/media/azucar.14055b6025dfdb425d31.jpg",
+    "static/media/azucar2.jpg": "/FrancisAlonso/materialui/static/media/azucar2.14055b6025dfdb425d31.jpg",
+    "static/media/pizza.jpg": "/FrancisAlonso/materialui/static/media/pizza.7271ba2b9b1b88748985.jpg",
+    "static/media/atun.jpg": "/FrancisAlonso/materialui/static/media/atun.9530fbe713c38589e71c.jpg",
+    "static/media/harina.jpg": "/FrancisAlonso/materialui/static/media/harina.38076f3a6da0628cd2da.jpg",
+    "static/media/zanahoria.jpg": "/FrancisAlonso/materialui/static/media/zanahoria.53ff0492e36dc2122c15.jpg",
+    "static/media/mariscos.jpg": "/FrancisAlonso/materialui/static/media/mariscos.486cec88f6d64a66954d.jpg",
+    "static/media/papas_fritas.jpg": "/FrancisAlonso/materialui/static/media/papas_fritas.ff5a549fda19e76c16e2.jpg",
+    "static/media/naranja.jpg": "/FrancisAlonso/materialui/static/media/naranja.f9770ad5bded43a06e3a.jpg",
+    "static/media/aceite.jpg": "/FrancisAlonso/materialui/static/media/aceite.52939367e12b47504a98.jpg",
+    "static/media/coca_cola.jpg": "/FrancisAlonso/materialui/static/media/coca_cola.d436b91708408bc8f3d1.jpg",
+    "static/media/cocacola.jpg": "/FrancisAlonso/materialui/static/media/cocacola.d436b91708408bc8f3d1.jpg",
+    "static/media/banana.jpg": "/FrancisAlonso/materialui/static/media/banana.183f9b8815e36b6c8312.jpg",
+    "static/media/helado.jpg": "/FrancisAlonso/materialui/static/media/helado.b3960e782c6fb8423c67.jpg",
+    "static/media/sal.jpg": "/FrancisAlonso/materialui/static/media/sal.d9c664208527e2d9832e.jpg",
+    "index.html": "/FrancisAlonso/materialui/index.html",
+    "main.c3bc851c.css.map": "/FrancisAlonso/materialui/static/css/main.c3bc851c.css.map",
+    "main.9c3e1929.js.map": "/FrancisAlonso/materialui/static/js/main.9c3e1929.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3bc851c.css",
+    "static/js/main.9c3e1929.js"
+  ]
+}
