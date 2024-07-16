@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Snackbar, Alert, Typography, Container, Popper } from '@mui/material';
 import TopBar from './components/TopBar';
 import Header from './components/Header';
@@ -90,50 +89,48 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Router basename="/materialui">
-        <div className="App">
-          <TopBar />
-          <Header cartCount={cart.length} handleToggleCartVisibility={handleToggleCartVisibility} handleCategoryClick={handleCategoryClick} />
-          <CoverImage />
-          <div className="offer-banner">
-            <Typography variant="h4" className="offer-title">
-              Ofertas
-            </Typography>
-          </div>
-          <Container>
-            <Cards handleAddToCart={handleAddToCart} />
-          </Container>
-
-          <Snackbar
-            open={openSnackbar}
-            autoHideDuration={6000}
-            onClose={handleCloseSnackbar}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-          >
-            <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-              {addedItem && `${addedItem.name} ha sido añadido al carrito`}
-            </Alert>
-          </Snackbar>
-          <Popper
-            open={isCartVisible}
-            anchorEl={anchorEl}
-            placement="bottom-end"
-            sx={{ zIndex: 1500 }} // Carrito visible sobre los menús de categoría
-          >
-            <Cart cart={cart} total={total} handleHideCart={handleHideCart} handleGoToPay={handleGoToPay} />
-          </Popper>
-          {showPaymentPage && <PaymentPage cart={cart} total={total} handleClose={() => setShowPaymentPage(false)} />}
-
-          {activeCategory && (
-            <CategoryMenu
-              category={activeCategory}
-              products={categories.find(cat => cat.name === activeCategory)?.products || []}
-              onClose={handleCloseCategory}
-              onAddToCart={handleAddToCart}
-            />
-          )}
+      <div className="App">
+        <TopBar />
+        <Header cartCount={cart.length} handleToggleCartVisibility={handleToggleCartVisibility} handleCategoryClick={handleCategoryClick} />
+        <CoverImage />
+        <div className="offer-banner">
+          <Typography variant="h4" className="offer-title">
+            Ofertas
+          </Typography>
         </div>
-      </Router>
+        <Container>
+          <Cards handleAddToCart={handleAddToCart} />
+        </Container>
+
+        <Snackbar
+          open={openSnackbar}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+            {addedItem && `${addedItem.name} ha sido añadido al carrito`}
+          </Alert>
+        </Snackbar>
+        <Popper
+          open={isCartVisible}
+          anchorEl={anchorEl}
+          placement="bottom-end"
+          sx={{ zIndex: 1500 }} // Carrito visible sobre los menús de categoría
+        >
+          <Cart cart={cart} total={total} handleHideCart={handleHideCart} handleGoToPay={handleGoToPay} />
+        </Popper>
+        {showPaymentPage && <PaymentPage cart={cart} total={total} handleClose={() => setShowPaymentPage(false)} />}
+
+        {activeCategory && (
+          <CategoryMenu
+            category={activeCategory}
+            products={categories.find(cat => cat.name === activeCategory)?.products || []}
+            onClose={handleCloseCategory}
+            onAddToCart={handleAddToCart}
+          />
+        )}
+      </div>
     </ThemeProvider>
   );
 };
