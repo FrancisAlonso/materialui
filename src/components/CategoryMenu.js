@@ -6,7 +6,7 @@ const CategoryMenu = ({ category, products, onClose, onAddToCart }) => {
   return (
     <Paper className="category-menu">
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1, borderBottom: '1px solid #ccc' }}>
-        <Typography variant="h6">{category}</Typography>
+        <Typography variant="h6" className="category-menu-title">{category}</Typography>
         <IconButton onClick={onClose} size="small">
           <CloseIcon />
         </IconButton>

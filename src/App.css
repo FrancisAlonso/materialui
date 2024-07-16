@@ -1,3 +1,4 @@
+/* src/App.css */
 .App {
   text-align: center;
   position: relative;
@@ -72,7 +73,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1600;
+  z-index: 1700;
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -117,12 +118,12 @@
 /* Nuevos estilos para el menú de categoría */
 .category-menu {
   position: fixed;
-  top: 50%;
+  top: 50px; /* Ajusta la posición para estar debajo del header */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
   z-index: 1400;
   width: 80%;
-  max-height: 80vh;
+  max-height: calc(100vh - 100px); /* Ajusta la altura para estar debajo del header */
   overflow-y: auto;
   background-color: white;
   padding: 16px;
@@ -133,7 +134,7 @@
 @media (max-width: 600px) {
   .category-menu {
     width: 100%;
-    top: 0;
+    top: 50px;
     left: 0;
     transform: none;
     border-radius: 0;
@@ -142,7 +143,7 @@
 
 .category-menu img {
   width: 100%;
-  height: 200px;
+  height: 100px; /* Ajuste la altura para que las imágenes sean más pequeñas */
   object-fit: cover;
 }
 
@@ -153,3 +154,73 @@
   justify-content: space-between;
 }
 
+.category-menu .MuiGrid-root {
+  max-height: calc(100vh - 150px); /* Ajusta según sea necesario */
+  overflow-y: auto;
+  flex-wrap: wrap; /* Asegura que los ítems se envuelvan en filas */
+}
+
+.category-menu .MuiGrid-item {
+  flex: 0 0 calc(33.3333% - 10px);
+  margin: 5px;
+  overflow: hidden; /* Elimina el scroll individual */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Centra el texto */
+  background-color: #f8f8f8; /* Añade un fondo para mejor visualización */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-menu .MuiTypography-root {
+  margin-top: 5px;
+  font-size: 14px; /* Tamaño de fuente ajustado para mejor visualización */
+}
+
+/* Estilo para el título de la categoría */
+.category-menu-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+/* Estilo para el fondo borroso */
+.blur-background *:not(.payment-page):not(.category-menu):not(.App-header):not(.App-header *) {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.payment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment-overlay .payment-page {
+  z-index: 1700; /* Eleva el menú de pago por encima del fondo borroso */
+}
+
+/* Agregar estilos adicionales si es necesario */
+.search-results {
+  width: auto;
+  max-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 10px;
+  z-index: 2000;
+  position: absolute;
+  left: 0; /* Asegura que los resultados de búsqueda estén alineados con el buscador */
+}

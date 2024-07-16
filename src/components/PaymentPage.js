@@ -1,57 +1,83 @@
-import React from 'react';
-import { Paper, Box, Typography, IconButton, ListItemText, Divider, Button, TextField, Grid } from '@mui/material';
+import React, { useState } from 'react';
+import { Typography, Button, TextField, Grid, Box, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 
 const PaymentPage = ({ cart, total, handleClose }) => {
-  const iva = total * 0.19;
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+
+  const handlePaymentMethodSelect = (method) => {
+    setSelectedPaymentMethod(method);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // Lógica de manejo de pago
+  };
+
+  const iva = total * 0.19; // IVA chileno del 19%
   const totalConIva = total + iva;
 
   return (
-    <Paper className="payment-page">
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1, borderBottom: '1px solid #ccc', mb: 2 }}>
-        <Typography variant="h6">Página de pago</Typography>
-        <IconButton onClick={handleClose} size="small">
+    <Box className="payment-page">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+        <Typography variant="h6">Detalles de la Compra</Typography>
+        <IconButton onClick={handleClose}>
           <CloseIcon />
         </IconButton>
       </Box>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" gutterBottom>Detalles de la Compra</Typography>
-          <Box className="cart-items-container">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="subtitle1">Productos:</Typography>
+          <Box sx={{ maxHeight: '200px', overflowY: 'auto' }}>
             {cart.map((item, index) => (
-              <Box key={index} className="cart-item">
-                <ListItemText primary={item.name} secondary={`$${item.price.toFixed(2)}`} />
+              <Box key={index} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0' }}>
+                <Typography variant="body2">{item.name}</Typography>
+                <Typography variant="body2">${item.price.toFixed(2)}</Typography>
               </Box>
             ))}
           </Box>
-          <Divider />
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="body1">Total</Typography>
-            <Typography variant="body1">${total.toFixed(2)}</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="body1">IVA (19%)</Typography>
-            <Typography variant="body1">${iva.toFixed(2)}</Typography>
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h6">Total con IVA</Typography>
-            <Typography variant="h6">${totalConIva.toFixed(2)}</Typography>
-          </Box>
+          <Typography variant="subtitle1" sx={{ marginTop: 2 }}>Total: ${total.toFixed(2)}</Typography>
+          <Typography variant="subtitle1">IVA (19%): ${iva.toFixed(2)}</Typography>
+          <Typography variant="h6">Total con IVA: ${totalConIva.toFixed(2)}</Typography>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom>Métodos de Pago</Typography>
-          <Button variant="contained" color="primary" fullWidth sx={{ mb: 1 }}>Webpay</Button>
-          <Button variant="contained" color="primary" fullWidth sx={{ mb: 1 }}>Mach</Button>
-          <Button variant="contained" color="primary" fullWidth>Efectivo</Button>
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Typography variant="h6" gutterBottom>Detalles del Pago</Typography>
-          <TextField fullWidth label="Nombre Completo" margin="normal" />
-          <TextField fullWidth label="Correo Electrónico" margin="normal" />
-          <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>Pagar</Button>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="subtitle1">Métodos de Pago:</Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            {['Webpay', 'Mach', 'Efectivo'].map((method) => (
+              <Button
+                key={method}
+                variant={selectedPaymentMethod === method ? 'contained' : 'outlined'}
+                color="primary"
+                onClick={() => handlePaymentMethodSelect(method)}
+                fullWidth
+              >
+                {method}
+              </Button>
+            ))}
+          </Box>
+          <form onSubmit={handleFormSubmit} style={{ marginTop: '16px' }}>
+            <TextField
+              label="Nombre Completo"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              required
+            />
+            <TextField
+              label="Correo Electrónico"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              type="email"
+              required
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Realizar Pago
+            </Button>
+          </form>
         </Grid>
       </Grid>
-    </Paper>
+    </Box>
   );
 };
 
