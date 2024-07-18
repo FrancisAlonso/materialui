@@ -85,7 +85,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className={`App ${showPaymentPage ? 'blur-background' : ''} ${activeCategory ? 'blur-background' : ''}`}>
         <TopBar />
         <Header
           cartCount={cart.length}
@@ -102,7 +102,7 @@ const App = () => {
             Ofertas
           </Typography>
         </div>
-        <Container className={(showPaymentPage || activeCategory) ? 'blur-background' : ''}>
+        <Container>
           <Cards handleAddToCart={handleAddToCart} />
         </Container>
 
@@ -126,8 +126,10 @@ const App = () => {
         </Popper>
         {showPaymentPage && (
           <>
-            <Backdrop open={showPaymentPage} sx={{ zIndex: 1600, color: '#fff' }} />
-            <PaymentPage cart={cart} total={total} handleClose={() => setShowPaymentPage(false)} />
+            <Backdrop open={showPaymentPage} sx={{ zIndex: 1400, color: '#fff' }} />
+            <div className="payment-overlay">
+              <PaymentPage cart={cart} total={total} handleClose={() => setShowPaymentPage(false)} />
+            </div>
           </>
         )}
         {activeCategory && (

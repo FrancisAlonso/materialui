@@ -1,7 +1,7 @@
-/* src/App.css */
 .App {
   text-align: center;
   position: relative;
+  overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 .App-logo {
@@ -24,6 +24,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  z-index: 2000;
 }
 
 .App-link {
@@ -39,12 +40,13 @@
   }
 }
 
-/* Nuevos estilos para el carrito */
+/* Estilos para el carrito */
 .cart-box {
   position: fixed;
   top: 16px;
   right: 16px;
   width: 300px;
+  max-width: 100%; /* Ajuste para pantallas pequeñas */
   max-height: 80vh;
   overflow-y: auto;
   background-color: #ffffff;
@@ -63,9 +65,10 @@
   }
 }
 
-/* Nuevos estilos para la página de pago */
+/* Estilos para la página de pago */
 .payment-page {
-  width: 80%;
+  width: 90%;
+  max-width: 600px; /* Ajuste para pantallas pequeñas */
   height: auto;
   margin: auto;
   padding: 20px;
@@ -73,9 +76,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1700;
+  z-index: 3000;
   background-color: #fff;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+  .payment-page {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
 }
 
 .offer-banner {
@@ -104,26 +118,21 @@
 }
 
 @media (max-width: 600px) {
-  .payment-page {
-    width: 100%;
-    padding: 10px;
-    height: auto;
-  }
-
   .cart-item {
     flex: 1 1 45%;
   }
 }
 
-/* Nuevos estilos para el menú de categoría */
+/* Estilos para el menú de categoría */
 .category-menu {
   position: fixed;
-  top: 50px; /* Ajusta la posición para estar debajo del header */
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
-  z-index: 1400;
-  width: 80%;
-  max-height: calc(100vh - 100px); /* Ajusta la altura para estar debajo del header */
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+  width: 90%;
+  max-width: 600px; /* Ajuste para pantallas pequeñas */
+  max-height: 80vh;
   overflow-y: auto;
   background-color: white;
   padding: 16px;
@@ -134,16 +143,17 @@
 @media (max-width: 600px) {
   .category-menu {
     width: 100%;
-    top: 50px;
+    top: 0;
     left: 0;
     transform: none;
     border-radius: 0;
+    max-height: 100vh;
   }
 }
 
 .category-menu img {
   width: 100%;
-  height: 100px; /* Ajuste la altura para que las imágenes sean más pequeñas */
+  height: 150px;
   object-fit: cover;
 }
 
@@ -154,44 +164,8 @@
   justify-content: space-between;
 }
 
-.category-menu .MuiGrid-root {
-  max-height: calc(100vh - 150px); /* Ajusta según sea necesario */
-  overflow-y: auto;
-  flex-wrap: wrap; /* Asegura que los ítems se envuelvan en filas */
-}
-
-.category-menu .MuiGrid-item {
-  flex: 0 0 calc(33.3333% - 10px);
-  margin: 5px;
-  overflow: hidden; /* Elimina el scroll individual */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center; /* Centra el texto */
-  background-color: #f8f8f8; /* Añade un fondo para mejor visualización */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.category-menu .MuiTypography-root {
-  margin-top: 5px;
-  font-size: 14px; /* Tamaño de fuente ajustado para mejor visualización */
-}
-
-/* Estilo para el título de la categoría */
-.category-menu-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  text-align: center;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 10px;
-}
-
 /* Estilo para el fondo borroso */
-.blur-background *:not(.payment-page):not(.category-menu):not(.App-header):not(.App-header *) {
+.blur-background .content {
   filter: blur(8px);
   -webkit-filter: blur(8px);
 }
@@ -203,17 +177,17 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1600;
+  z-index: 2500;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .payment-overlay .payment-page {
-  z-index: 1700; /* Eleva el menú de pago por encima del fondo borroso */
+  z-index: 3000; /* Eleva el menú de pago por encima del fondo borroso */
 }
 
-/* Agregar estilos adicionales si es necesario */
+/* Estilos adicionales para la barra de búsqueda */
 .search-results {
   width: auto;
   max-width: 300px;
@@ -222,5 +196,24 @@
   margin-top: 10px;
   z-index: 2000;
   position: absolute;
-  left: 0; /* Asegura que los resultados de búsqueda estén alineados con el buscador */
+}
+
+/* Estilos para el botón de hamburguesa y las categorías */
+.hamburger-menu {
+  display: none;
+}
+
+.category-links {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .category-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
 }

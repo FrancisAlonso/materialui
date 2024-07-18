@@ -1,18 +1,37 @@
-// src/components/Header.js
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Grid, IconButton, Badge, Button, Box, InputBase, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Popper } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Grid,
+  IconButton,
+  Badge,
+  Button,
+  Box,
+  InputBase,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Popper,
+  Drawer,
+  ListSubheader,
+  Divider,
+} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
 import img from '../img/logo.png'; // Ajusta la ruta según la ubicación de tu imagen
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: theme.palette.mode === 'light' ? alpha(theme.palette.common.white, 0.15) : '#1976d2',
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: theme.palette.mode === 'light' ? alpha(theme.palette.common.white, 0.25) : '#2196f3',
   },
   marginLeft: 0,
   width: '100%',
@@ -40,16 +59,33 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '20ch',
+      width: '30ch', // Aumentar el ancho para hacerlo más grande
     },
   },
 }));
 
-const Header = ({ cartCount, handleToggleCartVisibility, handleCategoryClick, searchTerm, handleSearchChange, searchResults, handleCategoryClickFromSearch }) => {
+const Header = ({
+  cartCount,
+  handleToggleCartVisibility,
+  handleCategoryClick,
+  searchTerm,
+  handleSearchChange,
+  searchResults,
+  handleCategoryClickFromSearch,
+}) => {
+  const theme = useTheme();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleSearchFocus = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const toggleDrawer = (open) => (event) => {
+    if (event && (event.type === 'keydown' || event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setDrawerOpen(open);
   };
 
   return (
@@ -63,17 +99,30 @@ const Header = ({ cartCount, handleToggleCartVisibility, handleCategoryClick, se
               </Typography>
             </Grid>
             <Grid item xs={6} sm={4} sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Button onClick={() => handleCategoryClick('Abarrotes')} sx={{ color: 'white' }}>
-                Abarrotes
-              </Button>
-              <Button onClick={() => handleCategoryClick('Frutas y Verduras')} sx={{ color: 'white' }}>
-                Frutas y Verduras
-              </Button>
-              <Button onClick={() => handleCategoryClick('Congelados')} sx={{ color: 'white' }}>
-                Congelados
-              </Button>
+              <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
+                <Button onClick={() => handleCategoryClick('Abarrotes')} sx={{ color: 'white', mx: 1 }}>
+                  Abarrotes
+                </Button>
+                <Button onClick={() => handleCategoryClick('Frutas y Verduras')} sx={{ color: 'white', mx: 1 }}>
+                  Frutas y Verduras
+                </Button>
+                <Button onClick={() => handleCategoryClick('Congelados')} sx={{ color: 'white', mx: 1 }}>
+                  Congelados
+                </Button>
+              </Box>
             </Grid>
-            <Grid item xs={4} sm={4} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', position: 'relative' }}>
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'center',
+                position: 'relative',
+                margin: 'auto', // Centra horizontalmente el buscador
+              }}
+            >
               <Search>
                 <SearchIconWrapper>
                   <SearchIcon />
@@ -92,7 +141,7 @@ const Header = ({ cartCount, handleToggleCartVisibility, handleCategoryClick, se
                 </Badge>
               </IconButton>
               <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
-                <IconButton color="inherit">
+                <IconButton color="inherit" onClick={toggleDrawer(true)}>
                   <MenuIcon />
                 </IconButton>
               </Box>
@@ -121,6 +170,23 @@ const Header = ({ cartCount, handleToggleCartVisibility, handleCategoryClick, se
           </Grid>
         </Toolbar>
       </AppBar>
+
+      {/* Drawer for Mobile Menu */}
+      <Drawer anchor="top" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <List>
+          <ListSubheader>Categorías</ListSubheader>
+          <Divider />
+          <ListItem button onClick={() => handleCategoryClick('Abarrotes')}>
+            <ListItemText primary="Abarrotes" />
+          </ListItem>
+          <ListItem button onClick={() => handleCategoryClick('Frutas y Verduras')}>
+            <ListItemText primary="Frutas y Verduras" />
+          </ListItem>
+          <ListItem button onClick={() => handleCategoryClick('Congelados')}>
+            <ListItemText primary="Congelados" />
+          </ListItem>
+        </List>
+      </Drawer>
     </>
   );
 };

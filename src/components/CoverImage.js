@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import coverImage from './img/cover.jpg'; // Asegúrate de tener una imagen de portada en esta ruta
 
 const CoverImage = () => {
   return (
@@ -9,9 +8,8 @@ const CoverImage = () => {
       sx={{
         width: '100%',
         height: { xs: '30vh', sm: '40vh', md: '50vh' }, // Altura responsiva
-        backgroundImage: `url(${coverImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        background: 'linear-gradient(45deg, #2196F3, #00BCD4)', // Fondo con gradiente azul y celeste
+        animation: 'colorChange 2s infinite alternate', // Animación de cambio de color más rápida
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
